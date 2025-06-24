@@ -1,4 +1,4 @@
-from selene import browser, have
+from selene import browser, have, be
 import pytest
 
 
@@ -13,7 +13,7 @@ def browser_base_url_and_resolution():
 
 def test_registration_form():
     browser.open('/')
-    browser.element('#firstName').type('Ivan')
+    browser.element('#firstName').should(be.visible).type('Ivan')
     browser.element('#lastName').type('Ivanov')
     browser.element('#userEmail').type('name@google.com')
     browser.element('label[for="gender-radio-1"]').click()
@@ -25,7 +25,6 @@ def test_registration_form():
     browser.element('.react-datepicker__month-select option[value="4"]').click()
     browser.element('[aria-label="Choose Thursday, May 20th, 1993"]').click()
     browser.element('#subjectsInput').type('History').press_enter()
-    browser.element('#subjectsInput').type('English').press_enter()
     browser.element('label[for="hobbies-checkbox-1"]').click()
     browser.element('#currentAddress').type('BII357, Block B 2, Raghubir Nagar, Tagore Garden Extension')
     browser.element('#state').click()
